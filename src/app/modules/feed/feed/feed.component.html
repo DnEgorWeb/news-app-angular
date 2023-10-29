@@ -1,0 +1,26 @@
+<section class="feed">
+  <h3 class="feed__title">The Latest News</h3>
+  <hr class="feed__separator">
+  <ul class="feed__list">
+    <li *ngFor="let item of list" class="feed__item">
+      <article>
+        <header>
+          <h4 class="feed__item__title">{{ item.title }}</h4>
+          <div class="feed__item__header">
+            <h5 class="feed__item__author">
+              <img [src]="item.authorImgURL" class="feed__item__authorImg" />
+              By {{ item.author }}
+            </h5>
+            <time class="feed__item__date">{{ item.date.toLocaleDateString() }}</time>
+          </div>
+        </header>
+        <hr>
+        <p class="feed__item__content">{{ item.description }}</p>
+      </article>
+    </li>
+  </ul>
+  <app-loading-indicator *ngIf="loading">Loading...</app-loading-indicator>
+  <div *ngIf="loadError !== null">
+    Error occured: {{ loadError }}
+  </div>
+</section>

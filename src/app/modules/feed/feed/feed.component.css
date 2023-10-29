@@ -1,0 +1,31 @@
+.feed {
+  background-color: #fcfcfc;
+}
+.feed__title {
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+  text-align: center;
+  color: #ce0104;
+}
+.feed__separator {
+  border-top: 1px solid black;
+}
+.feed__item {
+  list-style-type: none;
+}
+.feed__item__title {
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  color: black;
+}
+.feed__item__author {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 10px;
+}
+.feed__item__authorImg {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
