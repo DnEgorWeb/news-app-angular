@@ -12,6 +12,7 @@ export class FeedService {
       .pipe(
         first(),
         map(feedDTO => feedDTO.list.map(item => ({
+          id: item.id,
           title: item.title,
           description: item.description,
           author: item.author,

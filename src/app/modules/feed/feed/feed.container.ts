@@ -8,6 +8,7 @@ import { LoadingIndicator } from 'src/app/common/components/loading-indicator/lo
 import { FeedComponent } from './feed.component'
 import { ApiService } from 'src/app/common/services/api/api.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-feed',
@@ -22,7 +23,7 @@ export class FeedContainer implements OnInit, OnDestroy {
   loading: boolean = false
   loadError: string | null = null
 
-  constructor(private feedService: FeedService) { }
+  constructor(private feedService: FeedService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.loading = true
@@ -49,5 +50,9 @@ export class FeedContainer implements OnInit, OnDestroy {
     if (this.feedSubscription) {
       this.feedSubscription.unsubscribe()
     }
+  }
+
+  openItem(id: number) {
+    this.router.navigate([id], { relativeTo: this.route })
   }
 }

@@ -3,7 +3,7 @@
   <hr class="feed__separator">
   <ul class="feed__list">
     <li *ngFor="let item of list" class="feed__item">
-      <article>
+      <article (click)="onItemPress(item.id)">
         <header>
           <h4 class="feed__item__title">{{ item.title }}</h4>
           <div class="feed__item__header">
