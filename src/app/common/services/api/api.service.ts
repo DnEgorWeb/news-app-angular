@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Observable, catchError, throwError } from 'rxjs';
 
 import { FeedDto } from './types/feed-dto';
+import { FeedItemDto } from './types/feed-item-dto'
 import { ApiError, ApiErrorType } from './types/api-response';
 import { config } from '../../config';
 
@@ -13,6 +14,12 @@ export class ApiService {
   public fetchFeed(): Observable<FeedDto> {
     return this.client
       .get<FeedDto>(`${config.BASE_URL}/feed`)
+      .pipe(catchError(this.handleError))
+  }
+
+  public fetchFeedItem(id: number): Observable<FeedItemDto> {
+    return this.client
+      .get<FeedItemDto>(`${config.BASE_URL}/feed/${id}`)
       .pipe(catchError(this.handleError))
   }
 
@@ -29,9 +36,6 @@ export class ApiService {
     } else {
       errorType = ApiErrorType.Server
     }
-    setTimeout(() => {
-      console.log(errorType)
-    }, 0)
     return throwError(() => new ApiError(error.message, errorType))
   }
 }

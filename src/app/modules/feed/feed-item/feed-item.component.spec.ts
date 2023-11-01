@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FeedItemComponent } from './feed-item.component';
+import { FeedItemComponent } from './feed-item.container';
 
 describe('FeedItemComponent', () => {
   let component: FeedItemComponent;

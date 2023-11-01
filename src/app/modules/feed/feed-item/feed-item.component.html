@@ -1,1 +1,34 @@
-<p>feed-item works!</p>
+<section *ngIf="feedItem !== null" class="feed-item">
+  <header>
+    <h3 class="feed-item__title">{{ feedItem.title }}</h3>
+    <div class="feed-item__header">
+      <h5 class="feed-item__author">
+        <img [src]="feedItem.authorImgURL" class="feed-item__authorImg" />
+        By {{ feedItem.author }}
+      </h5>
+      <time class="feed-item__date">{{ feedItem.date.toLocaleDateString() }}</time>
+    </div>
+  </header>
+  <hr>
+  <p class="feed-item__content">{{ feedItem.content }}</p>
+  <hr>
+  <section class="feed-item__comments">
+    <h4 *ngIf="feedItem.comments.length !== 0">Comments:</h4>
+    <article class="comment" *ngFor="let comment of feedItem.comments">
+      <header class="comment__header">
+        <div class="comment__row">
+          <span class="comment__authorName">{{ comment.author }}</span>
+          <img [src]="comment.authorImgURL" class="comment__authorImg" />
+        </div>
+        <time class="comment__date">{{ comment.date.toLocaleDateString() + ' ' + comment.date.toLocaleTimeString() }}</time>
+      </header>
+      <p class="comment__content">{{ comment.content }}</p>
+      <hr>
+    </article>
+    <span *ngIf="feedItem.comments.length === 0">No comments so far</span>
+  </section>
+</section>
+<app-loading-indicator *ngIf="loading">Loading...</app-loading-indicator>
+<div *ngIf="loadError !== null">
+  Error occured: {{ loadError }}
+</div>

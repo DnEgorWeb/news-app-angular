@@ -7,6 +7,6 @@ export const feedRoutes: Route[] = [
   },
   {
     path: ':id',
-    loadComponent: () => import('./feed-item/feed-item.component').then(mod => mod.FeedItemComponent),
+    loadComponent: () => import('./feed-item/feed-item.container').then(mod => mod.FeedItemContainer),
   },
 ];
