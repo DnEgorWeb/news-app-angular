@@ -10,16 +10,44 @@
       </span>
     </header>
     <hr>
-    <form class="login__form">
+    <form class="login__form" #form="ngForm" (ngSubmit)="onSubmit(form)">
       <br />
       <label for="email" class="login__label">Email</label>
-      <input name="email" type="email" class="login__input">
+      <input
+        ngModel
+        email
+        required
+        id="email"
+        name="email"
+        type="email"
+        class="login__input"
+        #email="ngModel"
+      >
+      <div *ngIf="form.submitted && email.invalid && (email.dirty || email.touched)">
+        <span *ngIf="email.errors?.['required']">Email is required</span>
+        <span *ngIf="email.errors?.['email']">Email is invalid</span>
+      </div>
       <br />
       <label for="password" class="login__label">Password</label>
-      <input name="password" type="password" class="login__input">
+      <input
+        ngModel
+        required
+        name="password"
+        type="password"
+        class="login__input"
+        #password="ngModel"
+      >
+      <div *ngIf="form.submitted && password.invalid && (password.dirty || password.touched)">
+        <span *ngIf="password.errors?.['required']">Password is required</span>
+      </div>
       <br />
       <br />
-      <button type="button" class="login__submit">Sign In</button>
+      <button
+        class="login__submit"
+        [disabled]="!form.valid"
+      >
+        Sign In
+      </button>
     </form>
   </main>
 </div>
