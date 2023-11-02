@@ -1,25 +1,14 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Observable, catchError, throwError } from 'rxjs';
 
-import { FeedDto } from './types/feed-dto';
-import { FeedItemDto } from './types/feed-item-dto'
-import { ApiError, ApiErrorType } from './types/api-response';
-import { config } from '../../config';
+import { ApiError, ApiErrorType } from './api-response';
 
-@Injectable()
-export class ApiService {
+export abstract class ApiService {
   constructor(private client: HttpClient) {}
 
-  public fetchFeed(): Observable<FeedDto> {
+  protected fetch<T>(url: string): Observable<T> {
     return this.client
-      .get<FeedDto>(`${config.BASE_URL}/feed`)
-      .pipe(catchError(this.handleError))
-  }
-
-  public fetchFeedItem(id: number): Observable<FeedItemDto> {
-    return this.client
-      .get<FeedItemDto>(`${config.BASE_URL}/feed/${id}`)
+      .get<T>(url)
       .pipe(catchError(this.handleError))
   }
 

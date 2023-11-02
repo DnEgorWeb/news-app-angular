@@ -1,12 +1,12 @@
 import { Observable, first, map } from 'rxjs';
 import { Injectable } from '@angular/core';
 
-import { ApiService } from 'src/app/common/services/api/api.service';
 import { FeedItem } from './feed-item.model';
+import { FeedApiService } from '../../services/feed-api.service';
 
 @Injectable()
 export class FeedItemService {
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: FeedApiService) { }
 
   public loadFeedItem(id: number): Observable<FeedItem> {
     return this.apiService

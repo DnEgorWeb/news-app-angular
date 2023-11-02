@@ -1,20 +1,21 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { FeedItem } from './feed.model';
 import { FeedService } from './feed.service';
 import { Subscription, catchError, of, tap, throwError } from 'rxjs';
-import { ApiError, ApiErrorType } from 'src/app/common/services/api/types/api-response';
+import { ApiError, ApiErrorType } from 'src/app/common/services/api/api-response';
 import { LoadingIndicator } from 'src/app/common/components/loading-indicator/loading-indicator.component';
 import { FeedComponent } from './feed.component'
-import { ApiService } from 'src/app/common/services/api/api.service';
-import { HttpClientModule } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FeedApiService } from '../../services/feed-api.service';
 
 @Component({
   selector: 'app-feed',
   standalone: true,
   imports: [CommonModule, NgFor, LoadingIndicator, FeedComponent, HttpClientModule],
-  providers: [FeedService, ApiService],
+  providers: [FeedService, FeedApiService],
   templateUrl: './feed.container.html',
 })
 export class FeedContainer implements OnInit, OnDestroy {

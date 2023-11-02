@@ -1,10 +1,11 @@
 import { first, map } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { ApiService } from 'src/app/common/services/api/api.service';
+
+import { FeedApiService } from '../../services/feed-api.service';
 
 @Injectable()
 export class FeedService {
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: FeedApiService) {}
 
   public loadFeed() {
     return this.apiService

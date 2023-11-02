@@ -1,19 +1,20 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FeedItem } from './feed-item.model';
-import { Subscription, catchError, finalize, of, tap, throwError } from 'rxjs';
-import { FeedItemService } from './feed-item.service';
-import { FeedItemComponent } from './feed-item.component';
-import { ApiService } from 'src/app/common/services/api/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-import { ApiError, ApiErrorType } from 'src/app/common/services/api/types/api-response';
+import { Subscription, catchError, finalize, of, throwError } from 'rxjs';
+
+import { ApiError, ApiErrorType } from 'src/app/common/services/api/api-response';
+import { FeedApiService } from '../../services/feed-api.service';
+import { FeedItem } from './feed-item.model';
+import { FeedItemService } from './feed-item.service';
+import { FeedItemComponent } from './feed-item.component';
 
 @Component({
   selector: 'app-feed-item-container',
   standalone: true,
   imports: [CommonModule, FeedItemComponent, HttpClientModule],
-  providers: [FeedItemService, ApiService],
+  providers: [FeedItemService, FeedApiService],
   templateUrl: './feed-item.container.html',
   styleUrls: ['./feed-item.component.css']
 })
