@@ -1,5 +1,5 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http'
-import { Observable, catchError, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http'
+import { Observable, catchError, map, throwError } from 'rxjs';
 
 import { ApiError, ApiErrorType } from './api-response';
 
@@ -10,6 +10,10 @@ export abstract class ApiService {
     return this.client
       .get<T>(url)
       .pipe(catchError(this.handleError))
+  }
+
+  protected post(url: string, data: Record<string, unknown> = {}) {
+    return this.client.post(url, data).pipe(catchError(this.handleError))
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -25,6 +29,6 @@ export abstract class ApiService {
     } else {
       errorType = ApiErrorType.Server
     }
-    return throwError(() => new ApiError(error.message, errorType))
+    return throwError(() => new ApiError(error.statusText, errorType, error.error))
   }
 }

@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { FeedItem } from './feed.model';
@@ -14,7 +13,7 @@ import { FeedApiService } from '../../services/feed-api.service';
 @Component({
   selector: 'app-feed',
   standalone: true,
-  imports: [CommonModule, NgFor, LoadingIndicator, FeedComponent, HttpClientModule],
+  imports: [CommonModule, NgFor, LoadingIndicator, FeedComponent],
   providers: [FeedService, FeedApiService],
   templateUrl: './feed.container.html',
 })

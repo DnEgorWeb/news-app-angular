@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, catchError, finalize, of, throwError } from 'rxjs';
 
@@ -13,7 +12,7 @@ import { FeedItemComponent } from './feed-item.component';
 @Component({
   selector: 'app-feed-item-container',
   standalone: true,
-  imports: [CommonModule, FeedItemComponent, HttpClientModule],
+  imports: [CommonModule, FeedItemComponent],
   providers: [FeedItemService, FeedApiService],
   templateUrl: './feed-item.container.html',
   styleUrls: ['./feed-item.component.css']
