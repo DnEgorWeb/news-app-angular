@@ -10,7 +10,7 @@
       </span>
     </header>
     <hr>
-    <form class="login__form" #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <form class="login__form" #form="ngForm" (ngSubmit)="onFormSubmitted(form)">
       <br />
       <label for="email" class="login__label">Email</label>
       <input
@@ -25,8 +25,8 @@
         #email="ngModel"
       >
       <div *ngIf="form.submitted && email.invalid && (email.dirty || email.touched)">
-        <span *ngIf="email.errors?.['required']">Email is required</span>
-        <span *ngIf="email.errors?.['email']">Email is invalid</span>
+        <span *ngIf="email.errors?.['required']" class="login__error">Email is required</span>
+        <span *ngIf="email.errors?.['email']" class="login__error">Email is invalid</span>
       </div>
       <br />
       <label for="password" class="login__label">Password</label>
@@ -40,16 +40,22 @@
         #password="ngModel"
       >
       <div *ngIf="form.submitted && password.invalid && (password.dirty || password.touched)">
-        <span *ngIf="password.errors?.['required']">Password is required</span>
+        <span *ngIf="password.errors?.['required']" class="login__error">
+          Password is required
+        </span>
+      </div>
+      <div *ngIf="error !== null">
+        <span class="login__error">{{ error }}</span>
       </div>
       <br />
       <br />
       <button
         class="login__submit"
-        [disabled]="!form.valid"
+        [disabled]="!form.valid || submitting"
       >
         Sign In
       </button>
     </form>
   </main>
 </div>
+<app-loading-indicator *ngIf="submitting"></app-loading-indicator>

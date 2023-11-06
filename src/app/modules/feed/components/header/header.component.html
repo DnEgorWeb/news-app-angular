@@ -1,1 +1,4 @@
-<button (click)="onLogOutPress()">Log out</button>
+<button
+  [disabled]="submitting"
+  (click)="onLogOutPress()"
+>Log out</button>

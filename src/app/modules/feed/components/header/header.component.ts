@@ -1,18 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthService } from 'src/app/modules/auth/services/auth.service';
 
 @Component({
-  selector: 'app-header',
+  selector: 'app-header-component',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  constructor(private authService: AuthService) {}
+  @Input() submitting = false
+
+  @Output() logout = new EventEmitter<void>()
 
   onLogOutPress() {
-    this.authService.logout().subscribe()
+    this.logout.emit()
   }
 }

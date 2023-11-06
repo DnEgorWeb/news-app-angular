@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, catchError, fromEvent, map, of, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { AuthApiService } from './auth-api.service';
 import { LocalStorageService } from 'src/app/common/services/storage/local-storage.service';
 import { User } from '../model/user';
 import { Router } from '@angular/router';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthService {
   constructor(
     private authApiService: AuthApiService,
